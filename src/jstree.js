@@ -595,14 +595,19 @@
 							was_click = +(new Date()); // ie does not allow to prevent losing focus
 						}
 					}, this))
-				.on("mousedown.jstree", ".jstree-ocl", function (e) {
+				.on("mouseup.jstree", ".jstree-ocl", function (e) {
 						e.preventDefault(); // prevent any node inside from losing focus when clicking the open/close icon
 					})
 				.on("click.jstree", ".jstree-ocl", $.proxy(function (e) {
 						this.toggle_node(e.target);
+						e.preventDefault(); // prevent any node inside from losing focus when clicking the open/close icon
+					}, this))
+				.on("mousedown.jstree", ".jstree-ocl", $.proxy(function (e) {
+						e.preventDefault(); // prevent any node inside from losing focus when clicking the open/close icon
 					}, this))
 				.on("touchstart.jstree", ".jstree-ocl", $.proxy(function (e) {
 						this.toggle_node(e.target);
+						e.preventDefault(); // prevent any node inside from losing focus when clicking the open/close icon
 					}, this))
 				.on("dblclick.jstree", ".jstree-anchor", $.proxy(function (e) {
 						if(e.target.tagName && e.target.tagName.toLowerCase() === "input") { return true; }
